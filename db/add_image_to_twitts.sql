@@ -1,0 +1,1 @@
+ALTER TABLE twitts ADD COLUMN image VARCHAR(255);

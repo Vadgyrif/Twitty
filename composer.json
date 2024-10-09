@@ -1,0 +1,12 @@
+{
+    "name": "vadgyrif/twitter_copy",
+    "require": {
+        "illuminate/database": "^11.24"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
+    
