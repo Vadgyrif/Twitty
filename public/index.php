@@ -10,6 +10,16 @@ use App\Controllers\MainController;
 use App\Controllers\ProfileController;
 ?>
 
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitty</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+
 
 <?php
 
@@ -58,7 +68,7 @@ switch ($requestUri) {
     case '/twitt':
         if (isset($_SESSION['user_id']) && $requestMethod === 'POST') {
             $profileController->addNewTwitt();
-            header('Location: /'); // Повернення на головну сторінку
+            header('Location: /profile'); // Повернення на головну сторінку
             exit();
         }
             break;
@@ -84,3 +94,9 @@ switch ($requestUri) {
        // echo "404 Not Found";
        // break;
 }
+
+?>
+
+<script src="./js/script.js" ></script>
+
+</body>

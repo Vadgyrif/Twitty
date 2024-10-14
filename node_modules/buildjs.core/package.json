@@ -2,7 +2,7 @@
   "name": "buildjs.core",
   "description": "Core Shared Functionality for the BuildJS Tool Suite",
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "dependencies": {},
   "repository": {
     "type": "git",

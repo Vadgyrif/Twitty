@@ -1,3 +1,5 @@
-body{
-    background-color: antiquewhite;
-}
+@import './fonts.scss';
+@import './reset.scss';
+@import './profile.scss'; 
+@import './header.scss';
+@import './login.scss';

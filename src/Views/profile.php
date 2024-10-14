@@ -6,63 +6,77 @@
 </head>
 <body>
     
-    <div class="user__info">
-        <?php if (!empty($user['image'])): ?>
-            <img src="<?= htmlspecialchars($user['image']) ?>" alt="Фото">
-        <?php endif; ?>
-        <div class="user__info"></div>
-        <h2>Привіт, <?php echo htmlspecialchars($user['username']); ?>!</h2>
-        <p class="email"> <?php echo htmlspecialchars($user['email'])?> </p>
-        <p class="description"> <?php echo htmlspecialchars($user['bio'])?> </p>
-        <div class="birthdate"> <?php echo htmlspecialchars($user['birthdate'])?></div>
-        <a href="/profile/edit">Заповнити/оновити профіль</a>
+    <div class="container">
+        <div class="aside">
+            <div class="user__info">
+                <div class="user__avatar">
+                    <?php if (!empty($user['image'])): ?>
+                        <img class="img" <?= htmlspecialchars($user['image']) ?>" alt="Фото">
+                    <?php endif; ?>
+                </div>
+                <div class="user__name" >Привіт, <?php echo htmlspecialchars($user['username']); ?>!</div>
+                <div class="user__email"> <?php echo htmlspecialchars($user['email'])?> </div>
+                <div class="user__bio"> <?php echo htmlspecialchars($user['bio'] ?? 'Біографія не заповнена');?> </div>
+                <div class="birthdate"><?= !empty($user['birthdate']) ? htmlspecialchars(date('d.m.Y', strtotime($user['birthdate']))) : 'Дата народження не вказана'; ?></div>
 
-    </div>
+                <a class="user__edit_a" href="/profile/edit">Заповнити/оновити профіль</a>
+            </div>
+        </div>
 
-    
-    <h2>Напишіть новий твіт:</h2>
-    <form action="/twitt" enctype="multipart/form-data" method="POST">
-        <label for="image">Додати фото</label>
-        <input type="file" name="image" id="image">
-        <textarea name="twitt" required placeholder="Що у вас на думці?"></textarea>
-        <button type="submit">Відправити</button>
-    </form>
+        <div class="main">
+            <div class="twitts">
+                <?php if (count($twitts) > 0): ?>
+                    <ul>
+                        <?php foreach ($twitts as $twitt): ?>
+                            <li>
+                            <div class="twitt">
+                                <div class="action__with__twitt">
+                                    <form action="/twitt/delete" method="POST" style="display:inline">
+                                        <input type="hidden" name="twitt_id" value="<?php echo $twitt['id']; ?>">
+                                        <button type="submit" class="delete">Delete</button>
+                                    </form>
+                                    <form action="/twitt/edit" method="GET" style="display:inline">
+                                        <div class="fake__button"></div>
+                                        <input type="hidden" name="twitt_id" value="<?php echo $twitt['id']; ?>">
+                                    </form>
 
-    <h2>Ваші твіти:</h2>
-    <?php if (count($twitts) > 0): ?>
-        <ul>
-            <?php foreach ($twitts as $twitt): ?>
-                <li>
-                    <form action="/twitt/delete" method="POST" style="display:inline">
-                        <input type="hidden" name="twitt_id" value="<?php echo $twitt['id']; ?>">
-                        <button type="submit" class="delete">Delete</button>
-                    </form>
-                    <form action="/twitt/edit" method="GET" style="display:inline">
-                        <input type="hidden" name="twitt_id" value="<?php echo $twitt['id']; ?>">
-                    </form>
-
-                    <button class="edit-btn" data-id="<?php echo $twitt['id']; ?>">Edit</button>
-
-  
-                    <form id="edit-form-<?php echo $twitt['id']; ?>" style="display:none;">
-                        <textarea id="edit-twitt-<?php echo $twitt['id']; ?>"><?php echo htmlspecialchars($twitt['twitt']); ?></textarea>
-                        <button type="button" onclick="saveTwitt(<?php echo $twitt['id']; ?>)">Save</button>
-                    </form>
-                    <div class="twitt">
-                        <?php if (!empty($twitt['image'])): ?>
-                            <img src="<?= htmlspecialchars($twitt['image']) ?>" alt="Фото">
-                        <?php endif; ?>
-                        <p id="tweet-content-<?php echo $twitt['id']; ?>"><?php echo htmlspecialchars($twitt['twitt']); ?></p>
-                        <small>(<?php echo $twitt['created_at']; ?>)</small>
+                                    <button class="edit-btn" data-id="<?php echo $twitt['id']; ?>">Edit</button>
+                                </div>
+            
+                                <form id="edit-form-<?php echo $twitt['id']; ?>" style="display:none;">
+                                    <textarea class="edit__twitt_textarea" id="edit-twitt-<?php echo $twitt['id']; ?>"><?php echo htmlspecialchars($twitt['twitt']); ?></textarea>
+                                    <button type="button" onclick="saveTwitt(<?php echo $twitt['id']; ?>)">Save</button>
+                                </form>
+                                    <?php if (!empty($twitt['image'])): ?>
+                                        <img src="<?= htmlspecialchars($twitt['image']) ?>" alt="Фото">
+                                    <?php endif; ?>
+                                    <p class="twitt__content" id="tweet-content-<?php echo $twitt['id']; ?>"><?php echo htmlspecialchars($twitt['twitt']); ?></p>
+                                    <small class="birthdate">(<?php echo $twitt['created_at']; ?>)</small>
+                                </div>
+                        </li>
+                        
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>У вас немає твітів.</p>
+                <?php endif; ?>
+            </div>
+            <div class="add__new__twitt">
+                <form action="/twitt" enctype="multipart/form-data" method="POST">
+                    <div class="textarea__container">
+                        <textarea name="twitt" class="twitt__textarea" required placeholder="Що у вас на думці?"></textarea>
+                        <label for="image" class="upload-icon">
+                            <div class="alya__img"></div>
+                        </label>
+                        <input type="file" name="image" id="image">
+                    </div>   
+                    <div class="submit__container">
+                        <button type="submit">Відправити</button>
                     </div>
-            </li>
-            <br>
-            <?php endforeach; ?>
-        </ul>
-    <?php else: ?>
-        <p>У вас немає твітів.</p>
-    <?php endif; ?>
-
+                </form>
+            </div>
+        </div>
+    </div>
 
         <script src="/js/editTwitt.js" ></script>
 

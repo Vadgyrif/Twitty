@@ -1,0 +1,268 @@
+
+body{
+    background-color: #dfebf8;
+    overflow: hidden;
+    color: #292323;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
+
+}
+
+.aside{
+
+    width: 25%;
+    margin-right: 20px;
+
+    .user__info{
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        
+        margin-top: 30px;
+        background-color: #c5dcf5;
+        box-shadow: 6px 6px 3px 0px rgba(151, 196, 247, 0.86);
+        padding: 50px 30px;
+        border-radius: 12px;
+
+
+
+
+
+        .user__avatar{
+            display: block;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin-bottom: 20px; 
+        }
+
+        .user__name{
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .user__email{
+            margin-bottom: 30px;
+        }
+
+        .user__bio{
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.5rem;
+            margin-bottom: 20px;
+
+        }
+
+        .user__edit_a{
+            position: absolute;
+            bottom: 1%;
+        }
+    }
+}
+
+
+.main{
+    width: 60%;
+    position: relative;
+
+
+}
+
+.twitts{
+    border-radius: 12px;
+    background-color: #c5dcf5;
+    position: relative;
+    padding: 20px 20px;
+    margin-top: 30px;
+    max-height: 800px;
+    overflow-y: scroll;
+
+    scrollbar-width: thin; /* СКРОЛ */
+    scrollbar-color: #8aa6bf #e4eef7; 
+
+
+    .twitt{
+        margin-bottom: 15px;
+        padding: 15px 20px 15px 30px;
+        background-color: rgb(168, 232, 248);
+        border-radius: 12px;
+        box-shadow: 4px 8px 5px 0px rgba(151, 196, 247, 0.86);
+        transition: opacity 0.2s ease-in-out;
+        position: relative;
+
+    }
+
+    .twitt:hover{
+        opacity: 0.9;
+
+        .action__with__twitt{
+            button{
+                opacity: 1;
+                visibility: visible;
+                transition: opacity 0.3s ease, visibility 0s;
+            }
+            .fake__button{
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease, visibility 0s;
+                right: 100px;
+            }
+        }
+    }
+
+    .twitts.scroll-active .twitt:first-child {
+        opacity: 0.5;
+        transform: translateY(-20px);
+    }
+
+    .action__with__twitt, .birthdate{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .action__with__twitt{
+
+        position: relative;
+
+
+
+        button{
+            width: 20px;
+            height: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s 0.3s;
+            margin-right: 10px;
+            z-index: 2;
+        }
+    }
+
+    .twitt__content{
+        padding-right: 50px;
+        font-size: 1rem ;
+    }
+}
+
+.add__new__twitt{
+    position: absolute;
+    bottom: 0%;
+    width: 99%;
+    background-color: #c5dcf5;
+    padding: 0 0 20px 0;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+
+    #image{
+        display: none;
+    }
+
+
+    .textarea__container {
+        position: relative; 
+
+
+    .twitt__textarea{
+        width: 100%;
+        align-self: center;
+        background-color: rgb(168, 232, 248);
+        padding: 10px 15px ;
+        border-radius: 12px 12px 0 12px;
+        font-size: 1rem;
+        color: #000;
+        border: 5px  rgba(132, 184, 243, 0.86) solid;
+        box-shadow: 2px 6px 3px 0px rgb(88 141 206 / 80%);
+        padding-left: 40px; 
+        
+    }
+    
+    .edit__twitt_textarea{
+        background-color: rgb(168, 232, 248);
+        padding: 10px 15px ;
+        border-radius: 12px;
+        font-size: 1.5rem;
+        color: #000;
+        border: 5px  rgba(132, 184, 243, 0.86) solid;
+        box-shadow: 2px 6px 3px 0px rgba(132, 182, 243, 0.86);
+    }
+
+    .upload-icon {
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+        cursor: pointer;
+
+        .alya__img{
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgb(132, 184, 243);
+        }
+    }
+    
+     
+    
+    #image {
+        display: none;
+    }
+
+}
+
+    .submit__container{
+        display: flex;
+        justify-content: end;
+
+        button{
+            display: block;
+            width: 20%;
+            line-height: 2rem;
+            background-color: rgb(70 117 175) ;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 2px 6px 3px 0px rgb(124 156 195 / 86%);
+
+
+        }
+    }
+
+     
+}
+
+
+/* Трек скролу (фонова частина) */
+.twitts::-webkit-scrollbar {
+    width: 12px; /* Ширина скролу */
+}
+
+/* Бігунок (scroll thumb) */
+.twitts::-webkit-scrollbar-thumb {
+    background-color: #8aa6bf; /* Колір бігунка */
+    border-radius: 10px; /* Заокруглення */
+    border: 3px solid #e4eef7; /* Проміжок між бігунком і треком */
+}
+
+/* Трек (фонова частина скролу) */
+.twitts::-webkit-scrollbar-track {
+    background-color: #e4eef7; /* Колір треку */
+    border-radius: 10px; /* Заокруглення треку */
+}
+
+/* Бігунок при наведенні */
+.twitts::-webkit-scrollbar-thumb:hover {
+    background-color: #5b7d95; /* Темніший колір бігунка при наведенні */
+}
+
+

@@ -117,7 +117,7 @@ class ProfileController
 
 
     public function showEditProfileForm(){
-        require_once '../src/Views/bio.php';
+        require_once '../src/Views/profile_edit.php';
     }
 
     public function editProfile(){

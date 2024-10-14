@@ -1,0 +1,33 @@
+
+.header_main{
+    display: block;
+    background-color: rgb(161, 161, 219);
+    height: 60px;
+    padding: 0px 50px;
+    
+
+}
+
+.header__container{
+    height: 100%;
+    width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.header__left{
+    display: flex;
+
+    a{
+        margin-right: 30px;
+        color: #fff;
+        font-weight: 600;
+    }
+
+}
+
+.header__right{
+    display: flex;
+}

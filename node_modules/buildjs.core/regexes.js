@@ -31,6 +31,9 @@ var regexes = module.exports = {
   // coffeescript single line include #=
   includeHash: /^(\s*)\#\=(\w*)\s*(.*)$/,
 
+  // html comment include
+  includeHtmlComment: /^(\s*)<!--=(\w*)\s*(.*?)\s*-->$/,
+
   // leading and trailing quote capture
   quotesLeadAndTrail: /(^[\"\']|[\"\']$)/g,
 
@@ -44,6 +47,9 @@ regexes.includes = {
   // core supported file types
   js:     [ regexes.includeDoubleSlash, regexes.includeSlashStar ],
   css:    [ regexes.includeSlashStar ],
+
+  // experimental html support
+  html:   [ regexes.includeHtmlComment ],
 
   // other cool languages that I use every now and again
   coffee: [ regexes.includeHash ],
