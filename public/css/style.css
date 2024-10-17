@@ -118,6 +118,7 @@ body {
     box-shadow: 6px 6px 3px 0px rgba(151, 196, 247, 0.86);
     padding: 50px 30px;
     border-radius: 12px;
+    margin-bottom: 40px;
 }
 
 .aside .user__info .user__avatar {
@@ -163,7 +164,7 @@ body {
     position: relative;
     padding: 20px 20px;
     margin-top: 30px;
-    max-height: 800px;
+    height: 800px;
     overflow-y: scroll;
     scrollbar-width: thin;
  /* СКРОЛ */
@@ -190,13 +191,6 @@ body {
     transition: opacity 0.3s ease, visibility 0s;
 }
 
-.twitts .twitt:hover .action__with__twitt .fake__button {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0s;
-    right: 100px;
-}
-
 .twitts .twitts.scroll-active .twitt:first-child {
     opacity: 0.5;
     transform: translateY(-20px);
@@ -217,7 +211,7 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0s 0.3s;
-    margin-right: 10px;
+    margin-right: 30px;
     z-index: 2;
 }
 
@@ -252,7 +246,7 @@ body {
     font-size: 1rem;
     color: #000;
     border: 5px rgba(132, 184, 243, 0.86) solid;
-    box-shadow: 2px 6px 3px 0px rgba(88, 141, 206, 0.8);
+    box-shadow: 2px 6px 3px 0px rgba(124, 156, 195, 0.86);
     padding-left: 40px;
 }
 
@@ -263,7 +257,7 @@ body {
     font-size: 1.5rem;
     color: #000;
     border: 5px rgba(132, 184, 243, 0.86) solid;
-    box-shadow: 2px 6px 3px 0px rgba(132, 182, 243, 0.86);
+    box-shadow: 2px 6px 3px 0px rgba(132, 184, 243, 0.86);
 }
 
 .add__new__twitt .textarea__container .upload-icon {
@@ -302,6 +296,37 @@ body {
     box-shadow: 2px 6px 3px 0px rgba(124, 156, 195, 0.86);
 }
 
+.edit__form {
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+    justify-content: end;
+    margin-bottom: 15px;
+}
+
+.edit__form .edit__twitt_textarea {
+    width: 100%;
+    align-self: center;
+    background-color: rgb(203, 239, 248);
+    padding: 8px 10px;
+    border-radius: 12px 12px 12px 0;
+    font-size: 0.8rem;
+    color: #000;
+    border: 3px rgba(132, 184, 243, 0.86) solid;
+    box-shadow: 2px 6px 3px 0px rgba(88, 141, 206, 0.8);
+}
+
+.edit__form button {
+    display: block;
+    width: auto;
+    line-height: 1rem;
+    background-color: rgb(70, 117, 175);
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 4px 10px;
+    border-radius: 0 0 12px 12px;
+}
+
 /* Трек скролу (фонова частина) */
 .twitts::-webkit-scrollbar {
     width: 12px;
@@ -326,10 +351,67 @@ body {
  /* Заокруглення треку */
 }
 
-/* Бігунок при наведенні */
-.twitts::-webkit-scrollbar-thumb:hover {
-    background-color: #5b7d95;
- /* Темніший колір бігунка при наведенні */
+/* Бігунок для Firefox */
+.twitts {
+    scrollbar-width: thin;
+    scrollbar-color: #8aa6bf #e4eef7;
+}
+
+.submit__container button {
+    display: block;
+    line-height: 2rem;
+    background-color: rgb(70, 117, 175);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    box-shadow: 2px 6px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.friends {
+    background-color: #c5dcf5;
+    box-shadow: 6px 6px 3px 0px rgba(151, 196, 247, 0.86);
+    padding: 20px 30px 50px 30px;
+    border-radius: 12px;
+}
+
+.friends .friends__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.twitt__user_info {
+    display: flex;
+}
+
+.twitt__user_info .user__avatar {
+    width: 10%;
+}
+
+.twitt__user_info .twitt__user_text {
+    width: 90%;
+}
+
+.user_img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile a {
+    margin-right: 15px;
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
 .header_main {

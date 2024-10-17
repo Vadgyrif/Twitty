@@ -19,8 +19,30 @@
                 <div class="user__bio"> <?php echo htmlspecialchars($user['bio'] ?? 'Біографія не заповнена');?> </div>
                 <div class="birthdate"><?= !empty($user['birthdate']) ? htmlspecialchars(date('d.m.Y', strtotime($user['birthdate']))) : 'Дата народження не вказана'; ?></div>
 
-                <a class="user__edit_a" href="/profile/edit">Заповнити/оновити профіль</a>
+                <a class="user__edit_a" href="/profedit">Заповнити/оновити профіль</a>
             </div>
+
+            
+            <?php if (!empty($users)): ?>
+                <div class="friends">
+                    <div class="friends__title">Друзі?</div>
+                    <?php foreach ($users as $user): ?>
+                        <!-- Перевіряємо, чи не є користувач поточним залогіненим -->
+                        <?php if ($user['id'] == $_SESSION['user_id']) continue; ?>
+                        
+                        <div class="user-profile">
+                            <a href="/user/<?= htmlspecialchars($tweet['user_id']); ?>">
+                                <img class="user_img" src="<?= htmlspecialchars($user['avatar']) ?>" alt="" class="img">
+                            </a>
+                            <a href="/user/<?= $user['id']; ?>"><?= $user['username']; ?></a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No users found.</p>
+                <?php endif; ?>
+                </div>
+
+
         </div>
 
         <div class="main">
@@ -43,7 +65,7 @@
                                     <button class="edit-btn" data-id="<?php echo $twitt['id']; ?>">Edit</button>
                                 </div>
             
-                                <form id="edit-form-<?php echo $twitt['id']; ?>" style="display:none;">
+                                <form class="edit__form" id="edit-form-<?php echo $twitt['id']; ?>" style="display:none;">
                                     <textarea class="edit__twitt_textarea" id="edit-twitt-<?php echo $twitt['id']; ?>"><?php echo htmlspecialchars($twitt['twitt']); ?></textarea>
                                     <button type="button" onclick="saveTwitt(<?php echo $twitt['id']; ?>)">Save</button>
                                 </form>
@@ -51,7 +73,9 @@
                                         <img src="<?= htmlspecialchars($twitt['image']) ?>" alt="Фото">
                                     <?php endif; ?>
                                     <p class="twitt__content" id="tweet-content-<?php echo $twitt['id']; ?>"><?php echo htmlspecialchars($twitt['twitt']); ?></p>
-                                    <small class="birthdate">(<?php echo $twitt['created_at']; ?>)</small>
+                                    <small class="birthdate">
+                                        (<?= htmlspecialchars((new DateTime($twitt['created_at']))->format('H:i, d M Y')); ?>)
+                                    </small>
                                 </div>
                         </li>
                         

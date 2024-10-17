@@ -8,10 +8,12 @@ use App\Models\Twitt;
 class MainController
 {
     private $tweetModel;
+    private $userModel;
 
     public function __construct($db)
     {
         $this->tweetModel = new Twitt($db);
+        $this->userModel = new User($db);
     }
 
     public function showHome()

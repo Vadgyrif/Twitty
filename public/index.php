@@ -8,6 +8,8 @@ require_once '../src/config/database.php';
 use App\Controllers\AuthController;
 use App\Controllers\MainController;
 use App\Controllers\ProfileController;
+use App\Controllers\TwittsController;
+
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +17,7 @@ use App\Controllers\ProfileController;
 <head>
     <meta charset="UTF-8">
     <title>Twitty</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
@@ -26,8 +28,12 @@ use App\Controllers\ProfileController;
 require_once '../src/Views/frontpage.php';
 
 $profileController = new ProfileController($db);
+$twittsController = new TwittsController($db); 
 $authController = new AuthController($db);
-$mainController = new MainController($db); // Змініть тут
+$mainController = new MainController($db); 
+
+
+
 
 // Маршрутизація
 $requestUri = $_SERVER['REQUEST_URI'];
@@ -35,7 +41,7 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 switch ($requestUri) {
     case '/':
-        $mainController->showHome(); // Змініть тут
+        $mainController->showHome(); 
         break;
     case '/register':
         if ($requestMethod === 'POST') {
@@ -56,6 +62,13 @@ switch ($requestUri) {
     case '/logout':
         $authController->logout(); // Додайте маршрут для виходу
         break;
+    case '/profedit':
+        if ($requestMethod === 'POST') {
+            $profileController->editProfile();
+        } else {
+            $profileController->showEditProfileForm();
+        }
+        break;    
     case '/profile':
         if (isset($_SESSION['user_id'])) {
             $profileController->showProfile(); 
@@ -64,31 +77,31 @@ switch ($requestUri) {
             exit();
         }
             break;
+
+    case (preg_match('/\/user\/(\d+)/', $requestUri, $matches) ? true : false):
+        $userId = $matches[1]; 
+        $profileController->showUserProfile($userId); 
+        break;
+            
     
     case '/twitt':
         if (isset($_SESSION['user_id']) && $requestMethod === 'POST') {
-            $profileController->addNewTwitt();
+            $twittsController->addNewTwitt();
             header('Location: /profile'); // Повернення на головну сторінку
             exit();
         }
             break;
     case '/twitt/delete':
         if($requestMethod === 'POST'){
-            $profileController->deleteTwitt();
+            $twittsController->deleteTwitt();
         }
         break;  
     case '/twitt/update':
         if ($requestMethod === 'POST') {
-            $profileController->updateTwitt(); // Додайте метод для редагування твітів
+            $twittsController->updateTwitt(); // Додайте метод для редагування твітів
         }
         break;
-    case '/profile/edit':
-        if ($requestMethod === 'POST') {
-            $profileController->editProfile();
-        } else {
-            $profileController->showEditProfileForm();
-        }
-        break;
+    
 
     default:
        // echo "404 Not Found";

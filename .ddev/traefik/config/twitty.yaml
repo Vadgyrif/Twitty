@@ -5,16 +5,6 @@
 
 http:
   routers:
-    twitty-phpmyadmin-80-http:
-      entrypoints:
-        - http-8036
-      rule: HostRegexp(`^twitty\.ddev\.site$`)
-      
-      service: "twitty-phpmyadmin-80"
-      ruleSyntax: v3
-      tls: false
-      # middlewares:
-      #   - "twitty-redirectHttps"
     twitty-web-80-http:
       entrypoints:
         - http-80
@@ -35,18 +25,17 @@ http:
       tls: false
       # middlewares:
       #   - "twitty-redirectHttps"
-    
-    
-    twitty-phpmyadmin-80-https:
+    twitty-phpmyadmin-80-http:
       entrypoints:
-        - http-8037
+        - http-8036
       rule: HostRegexp(`^twitty\.ddev\.site$`)
       
       service: "twitty-phpmyadmin-80"
       ruleSyntax: v3
-      
-      tls: true
-      
+      tls: false
+      # middlewares:
+      #   - "twitty-redirectHttps"
+    
     
     
     twitty-web-80-https:
@@ -70,6 +59,17 @@ http:
       tls: true
       
     
+    twitty-phpmyadmin-80-https:
+      entrypoints:
+        - http-8037
+      rule: HostRegexp(`^twitty\.ddev\.site$`)
+      
+      service: "twitty-phpmyadmin-80"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
 
   middlewares:
     twitty-redirectHttps:
@@ -78,12 +78,6 @@ http:
         permanent: true
 
   services:
-    twitty-phpmyadmin-80:
-      loadbalancer:
-        servers:
-          - url: http://ddev-twitty-phpmyadmin:80
-        
-    
     twitty-web-80:
       loadbalancer:
         servers:
@@ -95,6 +89,12 @@ http:
           - url: http://ddev-twitty-web:8025
         
     
+    
+    twitty-phpmyadmin-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-twitty-phpmyadmin:80
+        
     
     
 

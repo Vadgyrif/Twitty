@@ -41,10 +41,30 @@ class User
         return $stmt->fetch();
     }
 
-    public function editProfile($userId, $bio, $birthdate){
-        $stmt = $this->db->prepare("UPDATE users SET bio = ?, birthdate = ? WHERE id = ?");
-        return $stmt->execute([$bio, $birthdate, $userId ]);
+    public function getAllUsers(){
+        $stmt = $this->db->prepare("SELECT id, username, avatar FROM users");
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
+
+    public function editProfile($userId, $bio, $birthdate = null) {
+    $sql = "UPDATE users SET bio = ?";
+    
+
+        if (!empty($birthdate)) {
+            $sql .= ", birthdate = ?";
+        }
+
+        $sql .= " WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $params = [$bio];
+        if (!empty($birthdate)) {
+            $params[] = $birthdate;
+        }
+        $params[] = $userId;
+        return $stmt->execute($params);
+    }
+
     
 
 }
