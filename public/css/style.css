@@ -90,7 +90,6 @@ legend {
 
 body {
     background-color: #dfebf8;
-    overflow: hidden;
     color: #292323;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -181,6 +180,10 @@ body {
     position: relative;
 }
 
+.twitts .twitt .user__avatar {
+    margin-right: 20px;
+}
+
 .twitts .twitt:hover {
     opacity: 0.9;
 }
@@ -218,6 +221,11 @@ body {
 .twitts .twitt__content {
     padding-right: 50px;
     font-size: 1rem;
+}
+
+.twitts .created {
+    display: flex;
+    justify-content: end;
 }
 
 .add__new__twitt {
@@ -386,10 +394,6 @@ body {
     display: flex;
 }
 
-.twitt__user_info .user__avatar {
-    width: 10%;
-}
-
 .twitt__user_info .twitt__user_text {
     width: 90%;
 }
@@ -495,4 +499,132 @@ body {
 
 .form__container a span {
     color: #000;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.header, .footer {
+    flex: 0 1 auto;
+}
+
+.main {
+    flex: 1 0 auto;
+}
+
+/* Адаптація для великих екранів */
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+}
+/* Додаткові стилі для інших пристроїв */
+@media (max-width: 767px) {
+    .header_main {
+        height: 100px;
+    }
+
+    .header_main .header__container {
+        max-width: 90%;
+    }
+
+    .header_main .header__container .header__left {
+        font-size: 1rem;
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .container .aside {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container .aside .user__info {
+        width: 95%;
+        margin-right: 0px;
+        padding: 20px 15px;
+    }
+
+    .container .aside .user__info .user__avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .container .aside .user__info .birthdate {
+        margin-bottom: 15px;
+    }
+
+    .container .aside .friends {
+        width: 95%;
+        margin: 0;
+        padding: 15px 30px 20px 30px;
+    }
+
+    .container .aside .friends_title {
+        font-size: 1.7rem;
+    }
+
+    .container .aside .friends .user-profile .user_img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .container .aside .friends .user-profile a {
+        font-size: 1.4rem;
+    }
+
+    .container .main {
+        width: 100%;
+    }
+
+    .container .main .twitts {
+        height: 1000px;
+    }
+
+    .container .main .twitts .twitt {
+        padding-left: 20px;
+    }
+
+    .container .main .twitts .twitt__user_info .user__avatar {
+        width: 15%;
+        margin-right: 10px;
+    }
+
+    .container .main .twitts .twitt__user_info .twitt__user_text {
+        width: 80%;
+    }
+
+    .container .main .twitts .twitt__content {
+        font-size: 1rem;
+    }
+
+    .container .main .twitts .created_at {
+        font-size: 0.7rem;
+    }
+
+    .container .main .add__new__twitt .twitt__textarea {
+        font-size: 1.1rem;
+    }
+
+    .container .main .add__new__twitt .submit__container button {
+        width: 50%;
+    }
+
+    .header, .footer {
+        font-size: 14px;
+ /* Зменшити шрифт */
+    }
+
+    .main {
+        font-size: 16px;
+ /* Основний текст */
+    }
 }

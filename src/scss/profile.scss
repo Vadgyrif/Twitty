@@ -3,7 +3,7 @@
 
 body {
     background-color: $background-color;
-    overflow: hidden;
+    //overflow: hidden;
     color: $text-color;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -92,6 +92,10 @@ body {
         transition: opacity 0.2s ease-in-out;
         position: relative;
 
+        .user__avatar{
+            margin-right: 20px;
+        }
+
         &:hover {
             opacity: 0.9;
 
@@ -132,6 +136,11 @@ body {
     .twitt__content {
         padding-right: 50px;
         font-size: 1rem ;
+    }
+
+    .created{
+        display: flex;
+        justify-content: end;
     }
 }
 
@@ -296,7 +305,7 @@ body {
         display: flex;
 
         .user__avatar{
-            width: 10%;
+           // width: 10%;
             
         }
 

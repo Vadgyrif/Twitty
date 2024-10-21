@@ -73,9 +73,11 @@
                                         <img src="<?= htmlspecialchars($twitt['image']) ?>" alt="Фото">
                                     <?php endif; ?>
                                     <p class="twitt__content" id="tweet-content-<?php echo $twitt['id']; ?>"><?php echo htmlspecialchars($twitt['twitt']); ?></p>
-                                    <small class="birthdate">
-                                        (<?= htmlspecialchars((new DateTime($twitt['created_at']))->format('H:i, d M Y')); ?>)
-                                    </small>
+                                    <div class="created">
+                                        <small class="created_at">
+                                            (<?= htmlspecialchars((new DateTime($twitt['created_at']))->format('H:i, d M Y')); ?>)
+                                        </small>
+                                    </div>
                                 </div>
                         </li>
                         
@@ -88,14 +90,15 @@
             <div class="add__new__twitt">
                 <form action="/twitt" enctype="multipart/form-data" method="POST">
                     <div class="textarea__container">
-                        <textarea name="twitt" class="twitt__textarea" required placeholder="Що у вас на думці?"></textarea>
+                        <textarea name="twitt" class="twitt__textarea" id="twittTextarea" required placeholder="Що у вас на думці?"></textarea>
                         <label for="image" class="upload-icon">
-                            <div class="alya__img"></div>
+                            <img src="/public/image/pngwing.com.png" class="alya__img" alt="">
                         </label>
                         <input type="file" name="image" id="image">
                     </div>   
                     <div class="submit__container">
-                        <button type="submit">Відправити</button>
+                        <span id="charCounter">300</span>
+                        <button type="submit" disabled >Поділитися</button>
                     </div>
                 </form>
             </div>

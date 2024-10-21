@@ -1,0 +1,144 @@
+.container {
+    display: flex;
+    flex-direction: column; 
+    padding: 20px;
+  }
+  
+  .header, .footer {
+    flex: 0 1 auto; 
+  }
+  
+  .main {
+    flex: 1 0 auto; 
+  }
+  
+  /* Адаптація для великих екранів */
+  @media (min-width: 768px) {
+    .container {
+         flex-direction: row; 
+    }
+  
+    
+  }
+  
+  /* Додаткові стилі для інших пристроїв */
+  @media (max-width: 767px) {
+
+    .header_main{
+        height: 100px;
+        
+        .header__container{
+            max-width: 90%;
+
+            .header__left{
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 10px; 
+
+        .aside{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .user__info{
+                width: 95%;
+                margin-right: 0px;
+                padding: 20px 15px;
+
+                .user__avatar{
+                    width: 100px;
+                    height: 100px;
+                }
+                .user__name{
+                    
+
+                }
+
+                .birthdate{
+                    margin-bottom: 15px;
+                }
+            }
+
+            .friends{
+                width: 95%;
+                margin: 0;
+
+                padding: 15px 30px 20px 30px;
+
+
+                &_title{
+                    font-size: 1.7rem;
+                }
+
+                .user-profile{
+                    .user_img{
+                        width: 60px;
+                        height: 60px;
+                    }
+
+                    a{
+                        font-size: 1.4rem;
+                    }
+                }
+            }
+        }
+
+        .main{
+            width: 100%;
+
+            .twitts{
+                height: 1000px;
+
+                .twitt{
+                    padding-left: 20px;
+                }
+                .twitt__user_info{
+                    .user__avatar{
+                        width: 15%;
+                        margin-right: 10px;
+                    }
+                    .twitt__user_text{
+                        width: 80%;
+                    }
+                }
+                .twitt__content{
+                    font-size: 1rem;
+
+                }
+
+            .created_at{
+                font-size: 0.7rem;
+            }
+            }
+
+
+            .add__new__twitt{
+                .twitt__textarea{
+                    font-size: 1.1rem;
+                }
+
+                .submit__container{
+                    button{
+                        width: 50%;
+                    }
+                }
+            }
+        }
+
+    }
+  
+    .header, .footer {
+      font-size: 14px; /* Зменшити шрифт */
+   }
+  
+    .main {
+      font-size: 16px; /* Основний текст */
+   }
+  }
+  

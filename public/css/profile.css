@@ -2,7 +2,6 @@
 
 body {
     background-color: #dfebf8;
-    overflow: hidden;
     color: #292323;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -93,6 +92,10 @@ body {
     position: relative;
 }
 
+.twitts .twitt .user__avatar {
+    margin-right: 20px;
+}
+
 .twitts .twitt:hover {
     opacity: 0.9;
 }
@@ -130,6 +133,11 @@ body {
 .twitts .twitt__content {
     padding-right: 50px;
     font-size: 1rem;
+}
+
+.twitts .created {
+    display: flex;
+    justify-content: end;
 }
 
 .add__new__twitt {
@@ -296,10 +304,6 @@ body {
 
 .twitt__user_info {
     display: flex;
-}
-
-.twitt__user_info .user__avatar {
-    width: 10%;
 }
 
 .twitt__user_info .twitt__user_text {
