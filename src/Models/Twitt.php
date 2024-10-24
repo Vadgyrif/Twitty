@@ -12,6 +12,7 @@ class Twitt
         $this->db = $db;
     }
 
+<<<<<<< HEAD
     public function addTwitt( $userId, $twitt ){
 
         $stmt = $this->db->prepare("INSERT INTO twitts (user_id, twitt) VALUES (?, ?)");
@@ -19,6 +20,15 @@ class Twitt
 
     }
 
+=======
+    public function addTwitt($userId, $twitt, $imagePath = null) {
+        $stmt = $this->db->prepare("INSERT INTO twitts (user_id, twitt, image) VALUES (?, ?, ?)");
+        return $stmt->execute([$userId, $twitt, $imagePath]);
+    }
+
+
+
+>>>>>>> 4986444 (twitty 1.5)
     public function getTwittById($twiitId){
         $stmt = $this->db->prepare("SELECT * FROM twitts WHERE id = ?");
         $stmt->execute([$twiitId]);

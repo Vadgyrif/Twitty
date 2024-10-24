@@ -15,7 +15,11 @@ class AuthController
     }
 
     public function showRegisterForm(){
+<<<<<<< HEAD
         require_once '../src/Views/register.php';
+=======
+        require_once __DIR__ . '/../Views/register.php';
+>>>>>>> 4986444 (twitty 1.5)
     }
 
     public function register()
@@ -37,7 +41,11 @@ class AuthController
     }
 
     public function showLoginForm(){
+<<<<<<< HEAD
         require_once '../src/Views/login.php';
+=======
+        require_once __DIR__ . '/../Views/login.php';
+>>>>>>> 4986444 (twitty 1.5)
     }
 
     public function login()

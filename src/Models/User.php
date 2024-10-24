@@ -40,6 +40,39 @@ class User
         $stmt->execute([$id]);  
         return $stmt->fetch();
     }
+<<<<<<< HEAD
+=======
+
+    public function getAllUsers(){
+        $stmt = $this->db->prepare("SELECT id, username, avatar FROM users");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function editProfile($userId, $bio, $birthdate = null, $avatarPath = null) {
+        $sql = "UPDATE users SET bio = ?, avatar = ?";
+
+        if (!empty($birthdate)) {
+            $sql .= ", birthdate = ?";
+        }
+
+        $sql .= " WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        
+        // Додаємо параметри для запиту
+        $params = [$bio, $avatarPath]; 
+
+        if (!empty($birthdate)) {
+            $params[] = $birthdate;
+        }
+
+        $params[] = $userId;
+        return $stmt->execute($params);
+    }
+
+
+
+>>>>>>> 4986444 (twitty 1.5)
     
 
 }
